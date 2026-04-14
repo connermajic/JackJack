@@ -1,0 +1,8 @@
+numpy
+scipy
+scikit-image
+nibabel
+tifffile
+meshio
+tetgen
+scikit-fem
