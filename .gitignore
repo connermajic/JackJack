@@ -1,0 +1,23 @@
+*.asv
+*.autosave
+*.m~ 
+*.mlx~
+
+# MATLAB profiler/cache/temp
+profile_results/
+slprj/
+sfprj/
+codegen/
+cache/
+tmp/
+
+# Data and generated outputs
+*.mat
+*.stl
+*.vtk
+*.h5
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
