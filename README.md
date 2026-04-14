@@ -4,7 +4,7 @@ Homogeneous finite element analysis pipeline for distal-radius scans from conver
 
 ## What this does
 
-- Loads converted scan volumes (`.mat`, `.nii`/`.nii.gz`, `.tif`/`.tiff`)
+- Loads converted scan volumes (`.mat`, `.nii`/`.nii.gz`, `.tif`/`.tiff`, raw `.isq`)
 - Segments bone from intensity data
 - Builds a surface mesh (`.stl`) from the segmentation
 - Runs 3D homogeneous linear-elastic FEA using MATLAB PDE Toolbox
@@ -60,6 +60,21 @@ params = struct( ...
 );
 
 result = radiusFEA_run('path/to/radius.mat', params);
+```
+
+### Raw `.isq` example
+
+When the `.isq` header does not include parseable dimensions, pass them explicitly:
+
+```matlab
+params = struct( ...
+    'isqSize', [1536 1536 400], ...
+    'isqDataType', 'int16', ...
+    'isqHeaderBytes', 512, ...
+    'isqByteOrder', 'ieee-le' ...
+);
+
+result = radiusFEA_run('path/to/scan.isq', params);
 ```
 
 ## Key parameters

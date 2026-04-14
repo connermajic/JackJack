@@ -14,7 +14,7 @@ function result = radiusFEA_run(imagePath, paramOverride)
 % helpers when available (graythresh, imfill, imopen).
 
     if nargin < 1 || isempty(imagePath)
-        error('radiusFEA_run:Input', 'Provide the path to a converted volume (.mat, .nii, .nii.gz, .tif).');
+        error('radiusFEA_run:Input', 'Provide the path to a converted volume (.mat, .nii, .nii.gz, .tif, .isq).');
     end
 
     p = defaultRadiusFEAParams();
@@ -25,6 +25,18 @@ function result = radiusFEA_run(imagePath, paramOverride)
     opts = struct();
     if nargin >= 2 && isstruct(paramOverride) && isfield(paramOverride, 'matVariableName')
         opts.matVariableName = paramOverride.matVariableName;
+    end
+    if nargin >= 2 && isstruct(paramOverride) && isfield(paramOverride, 'isqSize')
+        opts.isqSize = paramOverride.isqSize;
+    end
+    if nargin >= 2 && isstruct(paramOverride) && isfield(paramOverride, 'isqDataType')
+        opts.isqDataType = paramOverride.isqDataType;
+    end
+    if nargin >= 2 && isstruct(paramOverride) && isfield(paramOverride, 'isqHeaderBytes')
+        opts.isqHeaderBytes = paramOverride.isqHeaderBytes;
+    end
+    if nargin >= 2 && isstruct(paramOverride) && isfield(paramOverride, 'isqByteOrder')
+        opts.isqByteOrder = paramOverride.isqByteOrder;
     end
 
     [V, meta] = loadConvertedVolume(imagePath, opts);
